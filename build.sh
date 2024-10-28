@@ -8,8 +8,8 @@ mkdir output
 git clone https://github.com/file/file
 cd file
 autoreconf -vif
-./configure LDFLAGS="-static" --disable-nss --enable-static --disable-shared --disable-liblastlog2
-make -j8 LDFLAGS="-all-static"
+./configure LDFLAGS="-static -Wl,--gc-sections -ffunction-sections -fdata-sections" --disable-nss --enable-static --disable-shared --disable-liblastlog2
+make -j8 LDFLAGS="-all-static -Wl,--gc-sections -ffunction-sections -fdata-sections"
 strip src/file
 cp src/file ../output/file-static
 cp magic/magic.mgc ../output/
